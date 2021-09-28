@@ -25,7 +25,7 @@ export default function App() {
     localStorage.setItem("Contacts", JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = ({ name, number }) => {
+  const addContact = ( name, number ) => {
     let duplicate = contacts.find(
       (contact) => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -39,12 +39,12 @@ export default function App() {
         id: uuidv4(),
       };
 
-      setContacts((prevState) => ([...prevState, contact]));
+      setContacts((prevState) => ([contact, ...prevState]));
     }
   };
 
-  const changeFilter = event => {
-    setFilter(event.target.value);
+  const changeFilter = (e) => {
+    setFilter(e.currentTarget.value);
   };
 
 
@@ -55,7 +55,7 @@ export default function App() {
     );
   };
 
-  const deleteContact = contactId => {
+  const deleteContact = (contactId) => {
     setContacts(prevState =>
       prevState.filter(contact => contact.id !== contactId),
     );
